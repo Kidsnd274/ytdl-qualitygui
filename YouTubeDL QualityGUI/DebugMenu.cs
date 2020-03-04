@@ -12,23 +12,13 @@ using System.Diagnostics;
 
 namespace YouTubeDL_QualityGUI
 {
-    public partial class Form1 : Form
+    public partial class DebugMenu : Form
     {
-        Downloader youtubedl;
-
-        public Form1()
+        public DebugMenu()
         {
             InitializeComponent();
-            // Initial check for youtube-dl program
-            string youtubeDLCurrentDirectory = Path.Combine(Directory.GetCurrentDirectory(), "youtube-dl.exe");
-            if (File.Exists(youtubeDLCurrentDirectory))
-            {
-                if (youtubedl_test(youtubeDLCurrentDirectory))
-                {
-                    youtubedl_importer(youtubeDLCurrentDirectory);
-                    groupBox1.Enabled = true;
-                }
-            }
+            // DEBUG MENU to test pipe between this program and YouTubeDL
+
         }
 
         private void browseYouTubeDL_Click(object sender, EventArgs e)
@@ -36,17 +26,15 @@ namespace YouTubeDL_QualityGUI
             openFileDialog1.Filter = "youtube-dl Application (*.exe)|*.exe";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                
+                if (youtubedl_test(openFileDialog1.FileName))
+                {
+                    addLineToTextBox("DEBUG: Test complete, detected youtube-dl.exe");
+                }
+                else
+                {
+                    addLineToTextBox("Could not detect youtube-dl.exe");
+                }
             }
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-            // Debug Menu and full command line access
-            this.Hide();
-            var debugForm = new DebugMenu();
-            debugForm.ShowDialog();
-            this.Close();
         }
 
         private bool youtubedl_test(string location)
@@ -90,6 +78,7 @@ namespace YouTubeDL_QualityGUI
 
             // use the output
             string output = outputBuilder.ToString();
+            addLineToTextBox(output);
             if (output.Contains("Usage: youtube-dl.exe"))
             {
                 return true;
@@ -97,15 +86,10 @@ namespace YouTubeDL_QualityGUI
             else { return false; }
         }
 
-        private void youtubedl_importer(string location)
+        private void addLineToTextBox(string lineToAdd)
         {
-            // Creating new youtube-dl object
-            youtubedl = new Downloader() { };
-        }
-
-        private void UpdateStatusLabel(string textToUpdate)
-        {
-            toolStripStatusLabel1.Text = "Status: " + textToUpdate;
+            textBox1.Text += lineToAdd;
+            textBox1.Update();
         }
     }
 }

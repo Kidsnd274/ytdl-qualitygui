@@ -9,7 +9,17 @@ namespace YouTubeDL_QualityGUI
     class Downloader
     {
         /* Main Object to send inputs and receive outputs to the main YouTube DL Program */
+        public string youtubedlLocation;
 
-        
+
+        public Downloader()
+        {
+
+        }
+
+        private void ProgramTest()
+        {
+
+        }
     }
 }

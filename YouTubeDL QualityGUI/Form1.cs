@@ -66,9 +66,15 @@ namespace YouTubeDL_QualityGUI
 
         private void saveLocationBrowse_Click(object sender, EventArgs e)
         {
-            // saveLocationBrowse.
-
-
+            //if (folderToSave != "")
+            //{
+            //    folderBrowserDialog1.SelectedPath = folderToSave;
+            //}
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                folderToSave = folderBrowserDialog1.SelectedPath;
+                textBox2.Text = folderToSave;
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)

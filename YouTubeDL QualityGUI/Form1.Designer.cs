@@ -36,6 +36,7 @@
             this.youTubeDLLocation = new System.Windows.Forms.TextBox();
             this.browseYouTubeDL = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.downloadButton = new System.Windows.Forms.Button();
             this.qualitySelectorText = new System.Windows.Forms.Label();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -45,9 +46,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.downloadButton = new System.Windows.Forms.Button();
             this.saveLocationBrowse = new System.Windows.Forms.Button();
-            this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -127,6 +127,17 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Downloader";
+            // 
+            // downloadButton
+            // 
+            this.downloadButton.Enabled = false;
+            this.downloadButton.Location = new System.Drawing.Point(434, 241);
+            this.downloadButton.Name = "downloadButton";
+            this.downloadButton.Size = new System.Drawing.Size(75, 23);
+            this.downloadButton.TabIndex = 6;
+            this.downloadButton.Text = "Download";
+            this.downloadButton.UseVisualStyleBackColor = true;
+            this.downloadButton.Click += new System.EventHandler(this.downloadButton_Click);
             // 
             // qualitySelectorText
             // 
@@ -208,17 +219,6 @@
             this.textBox2.TabIndex = 7;
             this.textBox2.Text = "(leave blank to save at current directory)";
             // 
-            // downloadButton
-            // 
-            this.downloadButton.Enabled = false;
-            this.downloadButton.Location = new System.Drawing.Point(434, 241);
-            this.downloadButton.Name = "downloadButton";
-            this.downloadButton.Size = new System.Drawing.Size(75, 23);
-            this.downloadButton.TabIndex = 6;
-            this.downloadButton.Text = "Download";
-            this.downloadButton.UseVisualStyleBackColor = true;
-            this.downloadButton.Click += new System.EventHandler(this.downloadButton_Click);
-            // 
             // saveLocationBrowse
             // 
             this.saveLocationBrowse.Location = new System.Drawing.Point(455, 28);
@@ -228,10 +228,6 @@
             this.saveLocationBrowse.Text = "Browse";
             this.saveLocationBrowse.UseVisualStyleBackColor = true;
             this.saveLocationBrowse.Click += new System.EventHandler(this.saveLocationBrowse_Click);
-            // 
-            // openFileDialog2
-            // 
-            this.openFileDialog2.FileName = "saveLocationDialog";
             // 
             // Form1
             // 
@@ -279,7 +275,7 @@
         private System.Windows.Forms.Button downloadButton;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button saveLocationBrowse;
-        private System.Windows.Forms.OpenFileDialog openFileDialog2;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }
 

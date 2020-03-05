@@ -9,12 +9,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace YouTubeDL_QualityGUI
 {
     public partial class Form1 : Form
     {
+        CommonOpenFileDialog saveFolderDialog = new CommonOpenFileDialog();
         Downloader youtubedl;
+        DebugLogDialog debugLogDialog = new DebugLogDialog();
+
         string debugLog;
         string link;
         string folderToSave = "";
@@ -66,13 +70,15 @@ namespace YouTubeDL_QualityGUI
 
         private void saveLocationBrowse_Click(object sender, EventArgs e)
         {
-            //if (folderToSave != "")
-            //{
-            //    folderBrowserDialog1.SelectedPath = folderToSave;
-            //}
-            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            saveFolderDialog.IsFolderPicker = true;
+            if (folderToSave == "")
             {
-                folderToSave = folderBrowserDialog1.SelectedPath;
+                saveFolderDialog.InitialDirectory = Directory.GetCurrentDirectory();
+            }
+            else { saveFolderDialog.InitialDirectory = folderToSave; }
+            if (saveFolderDialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                folderToSave = saveFolderDialog.FileName;
                 textBox2.Text = folderToSave;
             }
         }
@@ -88,8 +94,7 @@ namespace YouTubeDL_QualityGUI
 
         private void toolStripStatusLabel1_Click(object sender, EventArgs e)
         {
-            // Open Logs but HOW?
-
+            debugLogDialog.ShowDialog();
         }
 
         private void checkLinkButton_Click(object sender, EventArgs e)
@@ -104,6 +109,7 @@ namespace YouTubeDL_QualityGUI
 
             string output = youtubedl.CheckLink(link);
             youtube_dl_Output.Text = output;
+            UpdateFormatList(output);
 
             linkVerified = true;
             checkLinkButton.Enabled = true;
@@ -114,13 +120,64 @@ namespace YouTubeDL_QualityGUI
 
         private void downloadButton_Click(object sender, EventArgs e)
         {
+            foreach (string item in checkedListBox1.CheckedItems)
+            {
+                MessageBox.Show(item);
+            }
             downloadButton.Enabled = false;
             checkLinkButton.Enabled = false;
+            checkedListBox1.Enabled = false;
 
+            string formatToDownload = "";
             // Write code to create format string
-            string formatToDownload = "best";
+            // Checking number of listbox items
+            if (checkedListBox1.CheckedItems.Count == 0)
+            {
+                formatToDownload = "best";
+            }
+            else if (checkedListBox1.CheckedItems.Count > 2)
+            {
+                MessageBox.Show("Too many items! Please select one video + audio format each");
+                downloadButton.Enabled = true;
+                checkLinkButton.Enabled = true;
+                checkedListBox1.Enabled = true;
+                return;
+            }
+            else if (checkedListBox1.CheckedItems.Count == 1)
+            {
+                foreach (string entries in checkedListBox1.CheckedItems)
+                {
+                    var ID_index = entries.IndexOf("");
+                    string ID = entries.Substring(0, ID_index);
+                    formatToDownload = ID;
+                }
+            }
+            else if (checkedListBox1.CheckedItems.Count == 2)
+            {
 
+                List<string> formats = new List<string>();
+                foreach (string entries in checkedListBox1.CheckedItems)
+                {
+                    var ID_index = entries.IndexOf("");
+                    string ID = entries.Substring(0, ID_index);
+                    formats.Add(ID);
+                }
+                formatToDownload = formats[0] + "+" + formats[1];
+            }
+            else 
+            { 
+                MessageBox.Show("Somehow you have entered the realm of nothingness and Kidsnd274 is kinda perplexed u managed to enter here");
+                formatToDownload = "best";
+                downloadButton.Enabled = true;
+                checkLinkButton.Enabled = true;
+                checkedListBox1.Enabled = true; return; 
+            }
+            UpdateStatusLabel("Downloading format " + formatToDownload + " with link " + link);
             youtubedl.DownloadLink(link, formatToDownload, folderToSave);
+
+            downloadButton.Enabled = true;
+            checkLinkButton.Enabled = true;
+            checkedListBox1.Enabled = true;
         }
 
         private void youtubedl_importer(string location)
@@ -131,8 +188,10 @@ namespace YouTubeDL_QualityGUI
 
         private void UpdateStatusLabel(string textToUpdate)
         {
-            debugLog += textToUpdate;
+            string newLine = Environment.NewLine;
+            debugLog += (textToUpdate + newLine);
             toolStripStatusLabel1.Text = "Status: " + textToUpdate;
+            debugLogDialog.UpdateDialog(debugLog);
         }
 
         private void UpdateProgressBar(int percentage)
@@ -142,7 +201,31 @@ namespace YouTubeDL_QualityGUI
 
         private void UpdateFormatList(string rawOutputDump)
         {
-            
+            bool initialOutput = false;
+
+            checkedListBox1.Items.Clear();
+            string[] lines = rawOutputDump.Split(Environment.NewLine.ToCharArray());
+            foreach (var entries in lines)
+            {
+                if (!initialOutput)
+                {
+                    if (entries.Contains("format code  extension  resolution note"))
+                    {
+                        initialOutput = true;
+                    }
+                }
+                else if (initialOutput)
+                {
+                    if (entries == "")
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        checkedListBox1.Items.Add(entries);
+                    }
+                }
+            }
         }
     }
 }

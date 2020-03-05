@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace YouTubeDL_QualityGUI
 {
@@ -13,7 +14,7 @@ namespace YouTubeDL_QualityGUI
         /* Main Object to send inputs and receive outputs to the main YouTube DL Program */
         private string youtubedlLocation;
 
-        StringBuilder outputBuilder;
+        StringBuilder outputBuilder = new StringBuilder();
         ProcessStartInfo processStartInfo;
         Process youtubedlProcess;
 
@@ -21,8 +22,6 @@ namespace YouTubeDL_QualityGUI
         {
             // Initialize youtube-dl object
             youtubedlLocation = import_youtubedlLocation;
-
-            outputBuilder = new StringBuilder();
 
             processStartInfo = new ProcessStartInfo();
             processStartInfo.CreateNoWindow = true;
@@ -49,6 +48,7 @@ namespace YouTubeDL_QualityGUI
 
         public bool ProgramTest()
         {
+            outputBuilder.Clear();
             processStartInfo.Arguments = "-h";
             // start the process
             // then begin asynchronously reading the output
@@ -70,6 +70,7 @@ namespace YouTubeDL_QualityGUI
 
         public string CheckLink(string link)
         {
+            outputBuilder.Clear();
             processStartInfo.Arguments = "-F \"" + link + "\"";
 
             youtubedlProcess.Start();
@@ -84,6 +85,7 @@ namespace YouTubeDL_QualityGUI
 
         public string DownloadLink(string link, string formatToDownload = "best", string folderToSave = "")
         {
+            outputBuilder.Clear();
             if (folderToSave == "")
             {
                 processStartInfo.Arguments = "-f " + formatToDownload + " \"" + link + "\"";
@@ -92,6 +94,7 @@ namespace YouTubeDL_QualityGUI
             {
                 string fileToSave = folderToSave + @"\%(title)s.%(ext)s";
                 processStartInfo.Arguments = "-o \"" + fileToSave + " -f " + formatToDownload + " \"" + link + "\"";
+                MessageBox.Show("Arguments: " + processStartInfo.Arguments);
             }
             youtubedlProcess.Start();
             youtubedlProcess.BeginOutputReadLine();

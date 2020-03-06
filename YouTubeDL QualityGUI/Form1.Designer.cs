@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -50,6 +51,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.audioOnlyBox = new System.Windows.Forms.CheckBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -116,6 +119,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.audioOnlyBox);
             this.groupBox1.Controls.Add(this.downloadButton);
             this.groupBox1.Controls.Add(this.qualitySelectorText);
             this.groupBox1.Controls.Add(this.checkedListBox1);
@@ -154,6 +158,7 @@
             // 
             // checkedListBox1
             // 
+            this.checkedListBox1.CheckOnClick = true;
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.HorizontalScrollbar = true;
             this.checkedListBox1.Location = new System.Drawing.Point(9, 52);
@@ -257,6 +262,17 @@
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
+            // audioOnlyBox
+            // 
+            this.audioOnlyBox.AutoSize = true;
+            this.audioOnlyBox.Location = new System.Drawing.Point(327, 276);
+            this.audioOnlyBox.Name = "audioOnlyBox";
+            this.audioOnlyBox.Size = new System.Drawing.Size(107, 17);
+            this.audioOnlyBox.TabIndex = 10;
+            this.audioOnlyBox.Text = "Show Audio Only";
+            this.audioOnlyBox.UseVisualStyleBackColor = true;
+            this.audioOnlyBox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -310,6 +326,8 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.CheckBox audioOnlyBox;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 

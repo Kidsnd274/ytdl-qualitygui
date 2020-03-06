@@ -27,6 +27,7 @@ namespace YouTubeDL_QualityGUI
         public Form1()
         {
             InitializeComponent();
+            toolTip1.SetToolTip(audioOnlyBox, "Show audio formats only (only for YouTube links)");
             InitialCheck();
         }
 
@@ -145,24 +146,19 @@ namespace YouTubeDL_QualityGUI
             }
             else if (checkedListBox1.CheckedItems.Count == 1)
             {
-                foreach (string entries in checkedListBox1.CheckedItems)
-                {
-                    var ID_index = entries.IndexOf("");
-                    string ID = entries.Substring(0, ID_index);
-                    formatToDownload = ID;
-                }
+                string ID_raw = checkedListBox1.CheckedItems[0].ToString();
+                formatToDownload = ID_raw.Split()[0];
             }
             else if (checkedListBox1.CheckedItems.Count == 2)
             {
-
                 List<string> formats = new List<string>();
                 foreach (string entries in checkedListBox1.CheckedItems)
                 {
-                    var ID_index = entries.IndexOf("");
-                    string ID = entries.Substring(0, ID_index);
+                    string ID_raw = entries.ToString();
+                    string ID = ID_raw.Split()[0];
                     formats.Add(ID);
                 }
-                formatToDownload = formats[0] + "+" + formats[1];
+                formatToDownload = formats[1] + "+" + formats[0];
             }
             else 
             { 
@@ -226,6 +222,11 @@ namespace YouTubeDL_QualityGUI
                     }
                 }
             }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

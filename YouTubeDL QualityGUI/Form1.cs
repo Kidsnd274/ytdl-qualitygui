@@ -121,10 +121,10 @@ namespace YouTubeDL_QualityGUI
 
         private void downloadButton_Click(object sender, EventArgs e)
         {
-            foreach (string item in checkedListBox1.CheckedItems)
-            {
-                MessageBox.Show(item);
-            }
+            //foreach (string item in checkedListBox1.CheckedItems)
+            //{
+            //    MessageBox.Show(item);
+            //}
             downloadButton.Enabled = false;
             checkLinkButton.Enabled = false;
             checkedListBox1.Enabled = false;

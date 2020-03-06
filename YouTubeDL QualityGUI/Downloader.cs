@@ -92,9 +92,9 @@ namespace YouTubeDL_QualityGUI
             }
             else
             {
-                string fileToSave = folderToSave + @"\%(title)s.%(ext)s";
+                string fileToSave = folderToSave + @"\%(title)s.%(ext)s""";
                 processStartInfo.Arguments = "-o \"" + fileToSave + " -f " + formatToDownload + " \"" + link + "\"";
-                MessageBox.Show("Arguments: " + processStartInfo.Arguments);
+                // MessageBox.Show("Arguments: " + processStartInfo.Arguments);
             }
             youtubedlProcess.Start();
             youtubedlProcess.BeginOutputReadLine();

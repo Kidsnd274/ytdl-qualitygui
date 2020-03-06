@@ -15,7 +15,6 @@ namespace YouTubeDL_QualityGUI
 {
     public partial class Form1 : Form
     {
-        CommonOpenFileDialog saveFolderDialog = new CommonOpenFileDialog();
         Downloader youtubedl;
         DebugLogDialog debugLogDialog = new DebugLogDialog();
 
@@ -71,6 +70,7 @@ namespace YouTubeDL_QualityGUI
 
         private void saveLocationBrowse_Click(object sender, EventArgs e)
         {
+            CommonOpenFileDialog saveFolderDialog = new CommonOpenFileDialog();
             saveFolderDialog.IsFolderPicker = true;
             if (folderToSave == "")
             {
@@ -176,6 +176,22 @@ namespace YouTubeDL_QualityGUI
             checkedListBox1.Enabled = true;
         }
 
+        private void audioOnlyBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void aboutQualityGUIToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var aboutForm = new Supplementary_Forms.AboutBox1();
+            aboutForm.ShowDialog();
+        }
+
         private void youtubedl_importer(string location)
         {
             // Creating new youtube-dl object
@@ -222,11 +238,6 @@ namespace YouTubeDL_QualityGUI
                     }
                 }
             }
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

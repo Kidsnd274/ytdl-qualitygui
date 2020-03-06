@@ -37,6 +37,7 @@
             this.youTubeDLLocation = new System.Windows.Forms.TextBox();
             this.browseYouTubeDL = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.audioOnlyBox = new System.Windows.Forms.CheckBox();
             this.downloadButton = new System.Windows.Forms.Button();
             this.qualitySelectorText = new System.Windows.Forms.Label();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
@@ -50,8 +51,9 @@
             this.saveLocationBrowse = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.audioOnlyBox = new System.Windows.Forms.CheckBox();
+            this.aboutQualityGUIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -135,6 +137,17 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Downloader";
+            // 
+            // audioOnlyBox
+            // 
+            this.audioOnlyBox.AutoSize = true;
+            this.audioOnlyBox.Location = new System.Drawing.Point(327, 276);
+            this.audioOnlyBox.Name = "audioOnlyBox";
+            this.audioOnlyBox.Size = new System.Drawing.Size(107, 17);
+            this.audioOnlyBox.TabIndex = 10;
+            this.audioOnlyBox.Text = "Show Audio Only";
+            this.audioOnlyBox.UseVisualStyleBackColor = true;
+            this.audioOnlyBox.CheckedChanged += new System.EventHandler(this.audioOnlyBox_CheckedChanged);
             // 
             // downloadButton
             // 
@@ -252,26 +265,33 @@
             // 
             // fileToolStripMenuItem
             // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutQualityGUIToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
-            // audioOnlyBox
+            // aboutQualityGUIToolStripMenuItem
             // 
-            this.audioOnlyBox.AutoSize = true;
-            this.audioOnlyBox.Location = new System.Drawing.Point(327, 276);
-            this.audioOnlyBox.Name = "audioOnlyBox";
-            this.audioOnlyBox.Size = new System.Drawing.Size(107, 17);
-            this.audioOnlyBox.TabIndex = 10;
-            this.audioOnlyBox.Text = "Show Audio Only";
-            this.audioOnlyBox.UseVisualStyleBackColor = true;
-            this.audioOnlyBox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.aboutQualityGUIToolStripMenuItem.Name = "aboutQualityGUIToolStripMenuItem";
+            this.aboutQualityGUIToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.aboutQualityGUIToolStripMenuItem.Text = "About QualityGUI";
+            this.aboutQualityGUIToolStripMenuItem.Click += new System.EventHandler(this.aboutQualityGUIToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -328,6 +348,8 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.CheckBox audioOnlyBox;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutQualityGUIToolStripMenuItem;
     }
 }
 

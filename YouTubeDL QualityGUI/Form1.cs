@@ -20,13 +20,13 @@ namespace YouTubeDL_QualityGUI
 
         string debugLog;
         string link;
+        string checkOutput;
         string folderToSave = "";
         bool linkVerified = false;
 
         public Form1()
         {
             InitializeComponent();
-            toolTip1.SetToolTip(audioOnlyBox, "Show audio formats only (only for YouTube links)");
             InitialCheck();
         }
 
@@ -77,10 +77,12 @@ namespace YouTubeDL_QualityGUI
                 saveFolderDialog.InitialDirectory = Directory.GetCurrentDirectory();
             }
             else { saveFolderDialog.InitialDirectory = folderToSave; }
+
             if (saveFolderDialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
                 folderToSave = saveFolderDialog.FileName;
                 textBox2.Text = folderToSave;
+                UpdateStatusLabel("Save location set");
             }
         }
 
@@ -105,12 +107,10 @@ namespace YouTubeDL_QualityGUI
             link = textBox1.Text;
             qualitySelectorText.Text = "Quality Selector: For Link (" + link + ")";
             UpdateStatusLabel("Checking Link...");
-            
-            Update();
 
-            string output = youtubedl.CheckLink(link);
-            youtube_dl_Output.Text = output;
-            UpdateFormatList(output);
+            checkOutput = youtubedl.CheckLink(link);
+            youtube_dl_Output.Text = checkOutput;
+            UpdateFormatList(checkOutput, audioOnlyBox.Checked);
 
             linkVerified = true;
             checkLinkButton.Enabled = true;
@@ -128,13 +128,15 @@ namespace YouTubeDL_QualityGUI
             downloadButton.Enabled = false;
             checkLinkButton.Enabled = false;
             checkedListBox1.Enabled = false;
+            audioOnlyBox.Enabled = false;
 
             string formatToDownload = "";
             // Write code to create format string
             // Checking number of listbox items
             if (checkedListBox1.CheckedItems.Count == 0)
             {
-                formatToDownload = "best";
+                if (audioOnlyBox.Checked) { formatToDownload = "bestaudio"; }
+                else { formatToDownload = "best"; }
             }
             else if (checkedListBox1.CheckedItems.Count > 2)
             {
@@ -142,6 +144,7 @@ namespace YouTubeDL_QualityGUI
                 downloadButton.Enabled = true;
                 checkLinkButton.Enabled = true;
                 checkedListBox1.Enabled = true;
+                audioOnlyBox.Enabled = true;
                 return;
             }
             else if (checkedListBox1.CheckedItems.Count == 1)
@@ -166,19 +169,28 @@ namespace YouTubeDL_QualityGUI
                 formatToDownload = "best";
                 downloadButton.Enabled = true;
                 checkLinkButton.Enabled = true;
-                checkedListBox1.Enabled = true; return; 
+                checkedListBox1.Enabled = true;
+                audioOnlyBox.Enabled = true;
+                return; 
             }
-            UpdateStatusLabel("Downloading format " + formatToDownload + " with link " + link);
-            youtubedl.DownloadLink(link, formatToDownload, folderToSave);
+            if (audioOnlyBox.Checked) { UpdateStatusLabel("Downloading format " + formatToDownload + " with link " + link + ". Audio only"); }
+            else { UpdateStatusLabel("Downloading format " + formatToDownload + " with link " + link); }
+            
+            UpdateProgressBar(10);
+            string downloadOutput = youtubedl.DownloadLink(link, formatToDownload, folderToSave);
+            youtube_dl_Output.Text += downloadOutput;
+            UpdateStatusLabel("Download complete");
+            UpdateProgressBar(100);
 
             downloadButton.Enabled = true;
             checkLinkButton.Enabled = true;
             checkedListBox1.Enabled = true;
+            audioOnlyBox.Enabled = true;
         }
 
         private void audioOnlyBox_CheckedChanged(object sender, EventArgs e)
         {
-
+            UpdateFormatList(checkOutput, audioOnlyBox.Checked);
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -211,7 +223,7 @@ namespace YouTubeDL_QualityGUI
             toolStripProgressBar1.Value = percentage;
         }
 
-        private void UpdateFormatList(string rawOutputDump)
+        private void UpdateFormatList(string rawOutputDump, bool audioOnly = false)
         {
             bool initialOutput = false;
 
@@ -221,7 +233,7 @@ namespace YouTubeDL_QualityGUI
             {
                 if (!initialOutput)
                 {
-                    if (entries.Contains("format code  extension  resolution note"))
+                    if (entries.Contains("format") & entries.Contains("code"))
                     {
                         initialOutput = true;
                     }
@@ -234,7 +246,17 @@ namespace YouTubeDL_QualityGUI
                     }
                     else
                     {
-                        checkedListBox1.Items.Add(entries);
+                        if (audioOnly)
+                        {
+                            if (entries.Contains("audio only"))
+                            {
+                                checkedListBox1.Items.Add(entries);
+                            }
+                        }
+                        else
+                        {
+                            checkedListBox1.Items.Add(entries);
+                        }
                     }
                 }
             }

@@ -37,11 +37,11 @@ namespace YouTubeDL_QualityGUI
             string youtubeDLCurrentDirectory = Path.Combine(Directory.GetCurrentDirectory(), "youtube-dl.exe");
             if (File.Exists(youtubeDLCurrentDirectory))
             {
-                youTubeDLLocation.Text = youtubeDLCurrentDirectory;
                 UpdateStatusLabel("Found youtube-dl.exe, verifying if program works...");
                 youtubedl_importer(youtubeDLCurrentDirectory);
                 if (youtubedl.ProgramTest())
                 {
+                    youTubeDLLocation.Text = youtubeDLCurrentDirectory;
                     groupBox1.Enabled = true;
                     UpdateStatusLabel("Verified youtube-dl.exe, program READY");
                 }
@@ -109,7 +109,7 @@ namespace YouTubeDL_QualityGUI
             UpdateStatusLabel("Checking Link...");
 
             checkOutput = youtubedl.CheckLink(link);
-            youtube_dl_Output.Text = checkOutput;
+            youtube_dl_Output.AppendText(checkOutput);
             UpdateFormatList(checkOutput, audioOnlyBox.Checked);
 
             linkVerified = true;
@@ -178,7 +178,7 @@ namespace YouTubeDL_QualityGUI
             
             UpdateProgressBar(10);
             string downloadOutput = youtubedl.DownloadLink(link, formatToDownload, folderToSave);
-            youtube_dl_Output.Text += downloadOutput;
+            youtube_dl_Output.AppendText(downloadOutput);
             UpdateStatusLabel("Download complete");
             UpdateProgressBar(100);
 
@@ -260,6 +260,21 @@ namespace YouTubeDL_QualityGUI
                     }
                 }
             }
+        }
+
+        private void updateBackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+        }
+
+        private void updateBackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+
+        }
+
+        private void updateBackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+
         }
     }
 }

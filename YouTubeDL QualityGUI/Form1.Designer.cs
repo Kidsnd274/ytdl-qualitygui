@@ -55,6 +55,7 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutQualityGUIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.updateBackgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -189,7 +190,7 @@
             this.checkedListBox1.Location = new System.Drawing.Point(12, 64);
             this.checkedListBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(669, 259);
+            this.checkedListBox1.Size = new System.Drawing.Size(669, 242);
             this.checkedListBox1.TabIndex = 5;
             // 
             // label3
@@ -284,6 +285,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
             this.menuStrip1.Size = new System.Drawing.Size(723, 28);
             this.menuStrip1.TabIndex = 9;
             this.menuStrip1.Text = "menuStrip1";
@@ -317,6 +319,12 @@
             this.aboutQualityGUIToolStripMenuItem.Size = new System.Drawing.Size(208, 26);
             this.aboutQualityGUIToolStripMenuItem.Text = "About QualityGUI";
             this.aboutQualityGUIToolStripMenuItem.Click += new System.EventHandler(this.aboutQualityGUIToolStripMenuItem_Click);
+            // 
+            // updateBackgroundWorker
+            // 
+            this.updateBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.updateBackgroundWorker_DoWork);
+            this.updateBackgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.updateBackgroundWorker_ProgressChanged);
+            this.updateBackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.updateBackgroundWorker_RunWorkerCompleted);
             // 
             // Form1
             // 
@@ -376,6 +384,7 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutQualityGUIToolStripMenuItem;
+        private System.ComponentModel.BackgroundWorker updateBackgroundWorker;
     }
 }
 

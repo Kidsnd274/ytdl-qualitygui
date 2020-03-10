@@ -105,5 +105,19 @@ namespace YouTubeDL_QualityGUI
 
             return output;
         }
+
+        public string CustomCommand(string argument)
+        {
+            processStartInfo.Arguments = argument;
+
+            youtubedlProcess.Start();
+            youtubedlProcess.BeginOutputReadLine();
+            youtubedlProcess.WaitForExit();
+            youtubedlProcess.CancelOutputRead();
+
+            string output = outputBuilder.ToString();
+
+            return output;
+        }
     }
 }

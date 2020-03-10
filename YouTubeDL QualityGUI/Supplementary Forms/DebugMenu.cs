@@ -14,11 +14,27 @@ namespace YouTubeDL_QualityGUI
 {
     public partial class DebugMenu : Form
     {
+        Downloader youtubedl;
+
         public DebugMenu()
         {
             InitializeComponent();
             // DEBUG MENU to test pipe between this program and YouTubeDL
+            InitialCheck();
+        }
 
+        public void InitialCheck()
+        {
+            string youtubeDLCurrentDirectory = Path.Combine(Directory.GetCurrentDirectory(), "youtube-dl.exe");
+            if (File.Exists(youtubeDLCurrentDirectory))
+            {
+                youtubedl_importer(youtubeDLCurrentDirectory);
+                if (youtubedl.ProgramTest())
+                {
+                    youTubeDLLocation.Text = youtubeDLCurrentDirectory;
+                    addLineToTextBox("DEBUG: Found youtube-dl.exe in current directory");
+                }
+            }
         }
 
         private void browseYouTubeDL_Click(object sender, EventArgs e)
@@ -26,70 +42,39 @@ namespace YouTubeDL_QualityGUI
             openFileDialog1.Filter = "youtube-dl Application (*.exe)|*.exe";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                if (youtubedl_test(openFileDialog1.FileName))
+                youtubedl_importer(openFileDialog1.FileName);
+                if (youtubedl.ProgramTest())
                 {
+                    youTubeDLLocation.Text = openFileDialog1.FileName;
                     addLineToTextBox("DEBUG: Test complete, detected youtube-dl.exe");
                 }
                 else
                 {
-                    addLineToTextBox("Could not detect youtube-dl.exe");
+                    addLineToTextBox("DEBUG: Could not detect youtube-dl.exe");
                 }
             }
-        }
-
-        private bool youtubedl_test(string location)
-        {
-            // Test for youtube-dl program
-            StringBuilder outputBuilder;
-            ProcessStartInfo processStartInfo;
-            Process youtubedlProcess;
-
-            outputBuilder = new StringBuilder();
-
-            processStartInfo = new ProcessStartInfo();
-            processStartInfo.CreateNoWindow = true;
-            processStartInfo.RedirectStandardOutput = true;
-            processStartInfo.RedirectStandardInput = true;
-            processStartInfo.UseShellExecute = false;
-            processStartInfo.Arguments = "-h";
-            processStartInfo.FileName = location;
-
-            youtubedlProcess = new Process();
-            youtubedlProcess.StartInfo = processStartInfo;
-            // enable raising events because Process does not raise events by default
-            youtubedlProcess.EnableRaisingEvents = true;
-            // attach the event handler for OutputDataReceived before starting the process
-            youtubedlProcess.OutputDataReceived += new DataReceivedEventHandler
-            (
-                delegate (object sender, DataReceivedEventArgs e)
-                {
-                    // append the new data to the data already read-in
-                    outputBuilder.Append(e.Data);
-                }
-            );
-            // start the process
-            // then begin asynchronously reading the output
-            // then wait for the process to exit
-            // then cancel asynchronously reading the output
-            youtubedlProcess.Start();
-            youtubedlProcess.BeginOutputReadLine();
-            youtubedlProcess.WaitForExit();
-            youtubedlProcess.CancelOutputRead();
-
-            // use the output
-            string output = outputBuilder.ToString();
-            addLineToTextBox(output);
-            if (output.Contains("Usage: youtube-dl.exe"))
-            {
-                return true;
-            }
-            else { return false; }
         }
 
         private void addLineToTextBox(string lineToAdd)
         {
-            textBox1.Text += lineToAdd;
-            textBox1.Update();
+            textBox1.AppendText(lineToAdd);
+        }
+
+        private void textBox2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                textBox2.Enabled = false;
+                textBox1.AppendText(youtubedl.CustomCommand(textBox2.Text));
+                textBox2.Clear();
+                textBox2.Enabled = true;
+            }
+        }
+
+        private void youtubedl_importer(string location)
+        {
+            // Creating new youtube-dl object
+            youtubedl = new Downloader(location) { };
         }
     }
 }

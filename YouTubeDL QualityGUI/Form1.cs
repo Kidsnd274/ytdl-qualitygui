@@ -37,11 +37,11 @@ namespace YouTubeDL_QualityGUI
             string youtubeDLCurrentDirectory = Path.Combine(Directory.GetCurrentDirectory(), "youtube-dl.exe");
             if (File.Exists(youtubeDLCurrentDirectory))
             {
-                youTubeDLLocation.Text = youtubeDLCurrentDirectory;
                 UpdateStatusLabel("Found youtube-dl.exe, verifying if program works...");
                 youtubedl_importer(youtubeDLCurrentDirectory);
                 if (youtubedl.ProgramTest())
                 {
+                    youTubeDLLocation.Text = youtubeDLCurrentDirectory;
                     groupBox1.Enabled = true;
                     UpdateStatusLabel("Verified youtube-dl.exe, program READY");
                 }
@@ -260,6 +260,25 @@ namespace YouTubeDL_QualityGUI
                     }
                 }
             }
+        }
+
+        // Launch youtube-dl.exe -U
+        private void updateYoutubedlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            checkLinkButton.Enabled = false;
+            checkedListBox1.Enabled = false;
+            bool downloadStatusTemp = downloadButton.Enabled;
+            downloadButton.Enabled = false;
+            UpdateProgressBar(50);
+            UpdateStatusLabel("Running youtube-dl update...");
+
+            checkOutput = youtubedl.CustomCommand("-U");
+            youtube_dl_Output.Text = checkOutput;
+
+            checkLinkButton.Enabled = true;
+            downloadButton.Enabled = downloadStatusTemp;
+            UpdateStatusLabel("Program Ready");
+            UpdateProgressBar(100);
         }
     }
 }

@@ -20,6 +20,8 @@ namespace YouTubeDL_QualityGUI
         public void UpdateDialog(string newLogs)
         {
             textBox1.Text = newLogs;
+            textBox1.SelectionStart = textBox1.Text.Length;
+            textBox1.ScrollToCaret();
         }
     }
 }

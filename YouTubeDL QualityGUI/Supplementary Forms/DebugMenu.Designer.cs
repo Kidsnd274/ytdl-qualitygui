@@ -39,9 +39,10 @@
             // 
             // browseYouTubeDL
             // 
-            this.browseYouTubeDL.Location = new System.Drawing.Point(455, 27);
+            this.browseYouTubeDL.Location = new System.Drawing.Point(607, 33);
+            this.browseYouTubeDL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.browseYouTubeDL.Name = "browseYouTubeDL";
-            this.browseYouTubeDL.Size = new System.Drawing.Size(75, 23);
+            this.browseYouTubeDL.Size = new System.Drawing.Size(100, 28);
             this.browseYouTubeDL.TabIndex = 6;
             this.browseYouTubeDL.Text = "Browse";
             this.browseYouTubeDL.UseVisualStyleBackColor = true;
@@ -49,18 +50,20 @@
             // 
             // youTubeDLLocation
             // 
-            this.youTubeDLLocation.Location = new System.Drawing.Point(121, 29);
+            this.youTubeDLLocation.Location = new System.Drawing.Point(161, 36);
+            this.youTubeDLLocation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.youTubeDLLocation.Name = "youTubeDLLocation";
             this.youTubeDLLocation.ReadOnly = true;
-            this.youTubeDLLocation.Size = new System.Drawing.Size(328, 20);
+            this.youTubeDLLocation.Size = new System.Drawing.Size(436, 22);
             this.youTubeDLLocation.TabIndex = 5;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 32);
+            this.label1.Location = new System.Drawing.Point(16, 39);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 13);
+            this.label1.Size = new System.Drawing.Size(137, 17);
             this.label1.TabIndex = 4;
             this.label1.Text = "youtube-dl Location:";
             // 
@@ -68,26 +71,31 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(12, 9);
+            this.label2.Location = new System.Drawing.Point(16, 11);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 13);
+            this.label2.Size = new System.Drawing.Size(102, 17);
             this.label2.TabIndex = 7;
             this.label2.Text = "DEBUG MODE";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(15, 55);
+            this.textBox1.Location = new System.Drawing.Point(20, 68);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(514, 357);
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBox1.Size = new System.Drawing.Size(684, 438);
             this.textBox1.TabIndex = 8;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(16, 418);
+            this.textBox2.Location = new System.Drawing.Point(21, 514);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(514, 20);
+            this.textBox2.Size = new System.Drawing.Size(684, 22);
             this.textBox2.TabIndex = 9;
+            this.textBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox2_KeyDown);
             // 
             // openFileDialog1
             // 
@@ -95,9 +103,9 @@
             // 
             // DebugMenu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(541, 450);
+            this.ClientSize = new System.Drawing.Size(721, 554);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
@@ -105,6 +113,7 @@
             this.Controls.Add(this.youTubeDLLocation);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "DebugMenu";
             this.Text = "YouTubeDL Quality GUI (DEBUG MENU)";
             this.ResumeLayout(false);

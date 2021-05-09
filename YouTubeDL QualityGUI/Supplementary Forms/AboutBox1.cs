@@ -101,5 +101,10 @@ namespace YouTubeDL_QualityGUI.Supplementary_Forms
             }
         }
         #endregion
+
+        private void labelVersion_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

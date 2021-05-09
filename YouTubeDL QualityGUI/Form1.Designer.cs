@@ -55,6 +55,7 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutQualityGUIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.updateYoutubedlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -106,7 +107,7 @@
             // youTubeDLLocation
             // 
             this.youTubeDLLocation.Location = new System.Drawing.Point(157, 26);
-            this.youTubeDLLocation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.youTubeDLLocation.Margin = new System.Windows.Forms.Padding(4);
             this.youTubeDLLocation.Name = "youTubeDLLocation";
             this.youTubeDLLocation.ReadOnly = true;
             this.youTubeDLLocation.Size = new System.Drawing.Size(436, 22);
@@ -115,7 +116,7 @@
             // browseYouTubeDL
             // 
             this.browseYouTubeDL.Location = new System.Drawing.Point(603, 23);
-            this.browseYouTubeDL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.browseYouTubeDL.Margin = new System.Windows.Forms.Padding(4);
             this.browseYouTubeDL.Name = "browseYouTubeDL";
             this.browseYouTubeDL.Size = new System.Drawing.Size(100, 28);
             this.browseYouTubeDL.TabIndex = 3;
@@ -137,9 +138,9 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Enabled = false;
             this.groupBox1.Location = new System.Drawing.Point(16, 89);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(691, 506);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
@@ -149,7 +150,7 @@
             // 
             this.audioOnlyBox.AutoSize = true;
             this.audioOnlyBox.Location = new System.Drawing.Point(436, 340);
-            this.audioOnlyBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.audioOnlyBox.Margin = new System.Windows.Forms.Padding(4);
             this.audioOnlyBox.Name = "audioOnlyBox";
             this.audioOnlyBox.Size = new System.Drawing.Size(137, 21);
             this.audioOnlyBox.TabIndex = 10;
@@ -162,7 +163,7 @@
             // 
             this.downloadButton.Enabled = false;
             this.downloadButton.Location = new System.Drawing.Point(583, 335);
-            this.downloadButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.downloadButton.Margin = new System.Windows.Forms.Padding(4);
             this.downloadButton.Name = "downloadButton";
             this.downloadButton.Size = new System.Drawing.Size(100, 28);
             this.downloadButton.TabIndex = 6;
@@ -187,7 +188,7 @@
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.HorizontalScrollbar = true;
             this.checkedListBox1.Location = new System.Drawing.Point(12, 64);
-            this.checkedListBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkedListBox1.Margin = new System.Windows.Forms.Padding(4);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(669, 259);
             this.checkedListBox1.TabIndex = 5;
@@ -205,7 +206,7 @@
             // youtube_dl_Output
             // 
             this.youtube_dl_Output.Location = new System.Drawing.Point(12, 370);
-            this.youtube_dl_Output.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.youtube_dl_Output.Margin = new System.Windows.Forms.Padding(4);
             this.youtube_dl_Output.Multiline = true;
             this.youtube_dl_Output.Name = "youtube_dl_Output";
             this.youtube_dl_Output.ReadOnly = true;
@@ -216,7 +217,7 @@
             // checkLinkButton
             // 
             this.checkLinkButton.Location = new System.Drawing.Point(583, 14);
-            this.checkLinkButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkLinkButton.Margin = new System.Windows.Forms.Padding(4);
             this.checkLinkButton.Name = "checkLinkButton";
             this.checkLinkButton.Size = new System.Drawing.Size(100, 28);
             this.checkLinkButton.TabIndex = 2;
@@ -228,7 +229,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(56, 16);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(517, 22);
             this.textBox1.TabIndex = 1;
@@ -256,7 +257,7 @@
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(157, 55);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(436, 22);
@@ -266,7 +267,7 @@
             // saveLocationBrowse
             // 
             this.saveLocationBrowse.Location = new System.Drawing.Point(603, 53);
-            this.saveLocationBrowse.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.saveLocationBrowse.Margin = new System.Windows.Forms.Padding(4);
             this.saveLocationBrowse.Name = "saveLocationBrowse";
             this.saveLocationBrowse.Size = new System.Drawing.Size(100, 28);
             this.saveLocationBrowse.TabIndex = 8;
@@ -299,13 +300,14 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(116, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.updateYoutubedlToolStripMenuItem,
             this.aboutQualityGUIToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
@@ -314,9 +316,16 @@
             // aboutQualityGUIToolStripMenuItem
             // 
             this.aboutQualityGUIToolStripMenuItem.Name = "aboutQualityGUIToolStripMenuItem";
-            this.aboutQualityGUIToolStripMenuItem.Size = new System.Drawing.Size(208, 26);
+            this.aboutQualityGUIToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.aboutQualityGUIToolStripMenuItem.Text = "About QualityGUI";
             this.aboutQualityGUIToolStripMenuItem.Click += new System.EventHandler(this.aboutQualityGUIToolStripMenuItem_Click);
+            // 
+            // updateYoutubedlToolStripMenuItem
+            // 
+            this.updateYoutubedlToolStripMenuItem.Name = "updateYoutubedlToolStripMenuItem";
+            this.updateYoutubedlToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.updateYoutubedlToolStripMenuItem.Text = "Update youtube-dl";
+            this.updateYoutubedlToolStripMenuItem.Click += new System.EventHandler(this.updateYoutubedlToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -334,7 +343,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "YouTubeDL QualityGUI";
             this.statusStrip1.ResumeLayout(false);
@@ -376,6 +385,7 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutQualityGUIToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem updateYoutubedlToolStripMenuItem;
     }
 }
 
